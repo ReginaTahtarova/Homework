@@ -26,9 +26,9 @@ namespace lab1.Controllers
             return View("Index");
         }
 
-        public void CreateNotepad(string NoteName)
+        public void CreateNotepad(Notepad NoteName)//(string NoteName)
         {
-           dt.AddNotepad(NoteName);
+           dt.AddNotepad(NoteName.Name);
         }
 
         [HttpPost]
@@ -50,6 +50,22 @@ namespace lab1.Controllers
         public void CreateImage(string notepad)
         {
             dt.CreateImage(notepad);
+        }
+
+        public class MyDataBinder : IModelBinder
+        {
+            public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
+            {
+                var request = controllerContext.HttpContext.Request;
+                if (request.Form["NoteName"] != null)
+                {
+                    return new Notepad("")
+                    {
+                        Name = request.Form["NoteName"]
+                    };
+                }
+                return null;
+            }
         }
 
     }

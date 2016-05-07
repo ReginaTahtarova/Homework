@@ -20,6 +20,12 @@ namespace lab1.Controllers
             return View();
         }
 
+        public ActionResult SelectNotepad(string Name)
+        {
+            ViewBag.Name = Name;
+            return View("Index");
+        }
+
         public void CreateNotepad(string NoteName)
         {
            dt.AddNotepad(NoteName);

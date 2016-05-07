@@ -13,11 +13,36 @@ namespace lab1
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.MapRoute(
+            //    name: "Default",
+            //    url: "{controller}/{action}/{id}",
+            //    defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            //);
+
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+               name: "Home",
+               url: "",
+               defaults: new { controller = "Home", action = "Index" }
+           );
+
+            routes.MapRoute(
+                name: "Notepad",
+                url: "notepad/create",
+                defaults: new { controller = "Home", action = "Create" }
             );
+
+            routes.MapRoute(
+                name: "Notepadss",
+                url: "notepad/{Name}",
+                defaults: new { controller = "Home", action = "SelectNotepad", Name = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+               name: "Notepadsss",
+               url: "Home/{action}",
+               defaults: new { controller = "Home", action = "Index" }
+           );
+
+           
 
         }
     }

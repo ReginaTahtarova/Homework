@@ -56,3 +56,12 @@
     var vm = new viewModel();
     vm.loadNotepads();
 });
+
+function GetNotepad(Notepad) {
+
+    $.post("/Home/LoadContent", { NoteName: Notepad }).success(function (data) {
+        $('#notepadContent').val(data);
+        $.post("/Home/CreateImage", { notepad: Notepad });
+        $('img').attr('src', '/Content/' + Notepad + '.jpg');
+    });
+};
